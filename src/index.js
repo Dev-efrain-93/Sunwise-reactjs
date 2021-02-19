@@ -1,16 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import Routes from './routes';
-import CoreLayout from './common/layouts/CoreLayout';
-import './styles/_main.scss';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import rootReducer from './reducers/index';
+import thunk from 'redux-thunk';
 
+//se crea el store que contiene el arbol de estados
+const store = createStore(rootReducer, applyMiddleware(thunk));
+
+//Y con Provider hago que el store Redux esté disponible en la jerarquía de componentes
 ReactDOM.render(
-  <React.StrictMode>
-    {/* <CoreLayout>
-      <Routes />
-    </CoreLayout> */}
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
