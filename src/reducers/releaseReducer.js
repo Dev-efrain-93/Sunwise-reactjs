@@ -1,4 +1,7 @@
-
+/**
+ * Reducer para los lanzamientos de la semana
+ * 
+ */
 const defaultState = {
     newReleases: []
 }

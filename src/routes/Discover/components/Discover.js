@@ -2,29 +2,34 @@ import React, { Component } from 'react';
 import DiscoverBlock from './DiscoverBlock/components/DiscoverBlock';
 import '../styles/_discover.scss';
 import { connect } from 'react-redux';
-import { fetchReleases } from '../../../actions/releaseActions';
+import { fetchReleases, fetchFeaturedPlaylists, fetchCategories } from '../../../actions/trackActions';
 
 class Discover extends Component {
   constructor() {
     super();
 
-    this.state = {
+    /* this.state = {
       newReleases: [],
       playlists: [],
       categories: []
-    };
+    }; */
   }
 
   componentDidMount(){
-    this.props.fetchReleases()
+    this.props.fetchReleases();
+    this.props.fetchFeaturedPlaylists();
+    this.props.fetchCategories();
   }
 
-  render() {
-    const { newReleases, playlists, categories } = this.state;
+  render() {    
+
+    const newReleases = this.props.newReleases ? this.props.newReleases : [];
+    const playlists = this.props.featuredPlaylists ? this.props.featuredPlaylists : [];
+    const categories = this.props.categories ?  this.props.categories : [];
 
     return (
       <div className="discover">
-        <DiscoverBlock text="RELEASED THIS WEEK" id="released" data={this.props.releaseReducer.newReleases} />
+        <DiscoverBlock text="RELEASED THIS WEEK" id="released" data={newReleases} />
         <DiscoverBlock text="FEATURED PLAYLISTS" id="featured" data={playlists} />
         <DiscoverBlock text="BROWSE" id="browse" data={categories} imagesKey="icons" />
       </div>
@@ -34,15 +39,18 @@ class Discover extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    releaseReducer: state.releaseReducer
+    newReleases: state.releaseReducer.newReleases,
+    featuredPlaylists: state.featuredPlaylistsReducer.featuredPlaylists,
+    categories: state.categoriesReducer.categories
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchReleases: () => dispatch(fetchReleases())
+    fetchReleases: () => dispatch(fetchReleases()),
+    fetchFeaturedPlaylists: () => dispatch(fetchFeaturedPlaylists()),
+    fetchCategories: () => dispatch(fetchCategories())
   }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Discover);
