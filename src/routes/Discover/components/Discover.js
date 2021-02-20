@@ -8,11 +8,6 @@ class Discover extends Component {
   constructor() {
     super();
 
-    /* this.state = {
-      newReleases: [],
-      playlists: [],
-      categories: []
-    }; */
   }
 
   componentDidMount(){

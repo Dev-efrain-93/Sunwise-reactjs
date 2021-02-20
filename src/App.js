@@ -3,7 +3,6 @@ import logo from './assets/images/spotify-black.svg';
 import './App.css';
 import config  from './config';
 import hash from './hash';
-import * as $ from "jquery";
 import Routes from './routes';
 import CoreLayout from './common/layouts/CoreLayout';
 import './styles/_main.scss';
