@@ -39,7 +39,7 @@ class App extends Component {
   
   render() {
     return (
-      <div>
+      <div className="main">
           {!this.state.token && (
           <div className="App">
               <header className="App-header">
