@@ -35,17 +35,19 @@ class App extends Component {
         token: _token
       });
       localStorage.setItem("token", _token);
-      this.props.fetchUserInfo();
-    }  
+      
+    }   
+    
+    this.props.fetchUserInfo();
   }
   
   
   render() {
     let userInfo = this.props.userInfo ? this.props.userInfo : null;
-    
+
     return (
       <div className="main">
-          {!this.state.token && (
+          {!userInfo.logeado && (
           <div className="App">
               <header className="App-header">
                   <img src={logo} className="App-logo" alt="logo" />            
@@ -60,7 +62,7 @@ class App extends Component {
               </header>
           </div>
           )}
-          {this.state.token && (
+          {userInfo.logeado && (
               <CoreLayout>
                   <Routes />
               </CoreLayout>

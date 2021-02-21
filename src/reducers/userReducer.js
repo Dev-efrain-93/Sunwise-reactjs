@@ -15,6 +15,10 @@ const userReducer = (state = defaultState, action) => {
                 logeado: true,
                 user: action.payload
             }
+        case "USER_ERROR":
+            return {
+                logeado: false
+            }
         default:
             return state;
     }
