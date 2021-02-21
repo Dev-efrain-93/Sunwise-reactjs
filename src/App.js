@@ -12,7 +12,8 @@ class App extends Component {
   constructor() {
     super();
 
-    let tokenSaved = localStorage.getItem("token");
+    //let tokenSaved = localStorage.getItem("token");
+    let tokenSaved = null;
 
     this.state = {
       token: tokenSaved || null
