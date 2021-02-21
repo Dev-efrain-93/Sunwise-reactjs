@@ -19,7 +19,7 @@ class Sidebar extends Component{
   }
 
   componentDidMount(){
-    this.props.fetchUserInfo();
+    
   }
 
   render() {
@@ -66,16 +66,12 @@ class Sidebar extends Component{
   }
 }
 
+//recuperar estado
 const mapStateToProps = (state) => {
   return {
     userInfo: state.userReducer,
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchUserInfo: () => dispatch(fetchUserInfo())
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
+//conectamos el objeto del almacen redux a atributos del componente sin ninguna accion a enviar
+export default connect(mapStateToProps, null)(Sidebar);

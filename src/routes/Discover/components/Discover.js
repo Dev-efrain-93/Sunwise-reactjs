@@ -32,14 +32,17 @@ class Discover extends Component {
   }
 }
 
+//recuperar estado
 const mapStateToProps = (state) => {
   return {
+    userInfo: state.userReducer,
     newReleases: state.releaseReducer.newReleases,
     featuredPlaylists: state.featuredPlaylistsReducer.featuredPlaylists,
     categories: state.categoriesReducer.categories
   }
 }
 
+//enviar acciones
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchReleases: () => dispatch(fetchReleases()),

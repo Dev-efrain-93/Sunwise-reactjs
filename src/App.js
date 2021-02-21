@@ -6,6 +6,8 @@ import hash from './hash';
 import Routes from './routes';
 import CoreLayout from './common/layouts/CoreLayout';
 import './styles/_main.scss';
+import { connect } from 'react-redux';
+import { fetchUserInfo } from './actions/userActions';
 
 class App extends Component {
 
@@ -33,11 +35,14 @@ class App extends Component {
         token: _token
       });
       localStorage.setItem("token", _token);
+      this.props.fetchUserInfo();
     }  
   }
   
   
   render() {
+    let userInfo = this.props.userInfo ? this.props.userInfo : null;
+    
     return (
       <div className="main">
           {!this.state.token && (
@@ -65,4 +70,18 @@ class App extends Component {
   }
 }
   
-export default App;
+//recuperar estado
+const mapStateToProps = (state) => {
+  return {
+    userInfo: state.userReducer,
+  }
+}
+
+//enviar acciones
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchUserInfo: () => dispatch(fetchUserInfo())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
