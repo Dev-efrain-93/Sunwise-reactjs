@@ -83,7 +83,7 @@
     }
 
     > svg:nth-of-type(2) {
-      color: $primary-blue;
+      color: #cecedc;
       font-size: 35px;
       margin-left: 15px;
       margin-right: 15px;
@@ -98,8 +98,7 @@
       position: absolute;
       border-radius: 50%;
       z-index: 0;
-      border: 10px solid $primary-blue;
-      background: white;
+      border: 10px solid #cecedc;
       box-sizing: content-box !important;
     }
   }

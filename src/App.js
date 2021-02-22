@@ -8,18 +8,20 @@ import CoreLayout from './common/layouts/CoreLayout';
 import './styles/_main.scss';
 import { connect } from 'react-redux';
 import { fetchUserInfo } from './actions/userActions';
+import { ThemeProvider } from "styled-components";
+import { GlobalStyles } from "./components/GlobalStyles";
+import { lightTheme, darkTheme } from "./components/Themes";
 
 class App extends Component {
-
+  
   constructor() {
     super();
 
-    //let tokenSaved = localStorage.getItem("token");
     let tokenSaved = null;
 
     this.state = {
       token: tokenSaved || null
-    };
+    };   
 
   }     
     
@@ -44,8 +46,12 @@ class App extends Component {
   
   render() {
     let userInfo = this.props.userInfo ? this.props.userInfo : null;
+    let themeSelected = this.props.theme ? this.props.theme : 'dark';
 
     return (
+      <ThemeProvider theme={themeSelected == 'light' ? lightTheme : darkTheme}>
+      <>
+      <GlobalStyles/>
       <div className="main">
           {!userInfo.logeado && (
           <div className="App">
@@ -67,7 +73,9 @@ class App extends Component {
                   <Routes />
               </CoreLayout>
           )} 
-      </div>       
+      </div>
+      </>
+      </ThemeProvider>             
     );
   }
 }
@@ -76,6 +84,7 @@ class App extends Component {
 const mapStateToProps = (state) => {
   return {
     userInfo: state.userReducer,
+    theme: state.appReducer.theme
   }
 }
 

@@ -37,7 +37,7 @@ class Sidebar extends Component{
         {userInfo && userInfo.logeado && (  
           <div className="sidebar__profile">
             <div className="discover-item__art"
-              style={{ backgroundImage: `url(${userInfo.user.images[0].url})`, width: '69px', height: '69px', border: 'solid #6560cc', borderRadius: '50%' }}
+              style={{ backgroundImage: `url(${userInfo.user.images[0].url})`, width: '69px', height: '69px', border: 'solid rgb(196 195 206)', borderRadius: '50%' }}
               /> 
             <p>{userInfo.user.display_name}</p>
           </div>      
